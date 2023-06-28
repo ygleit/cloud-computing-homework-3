@@ -64,10 +64,10 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: image
-          path: image.tar
+          path: cloud-computing-homework-3/cloud-computing-homework-3/image.tar
       
       - name: Load Docker Image From Previous Job
-        run: docker load --input image.tar
+        run: docker load --input cloud-computing-homework-3/image.tar
         
       - name: Run Docker Image
         run: docker run -p 8000:8000 cloud-computing-homework-3 -d
