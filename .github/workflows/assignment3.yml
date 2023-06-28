@@ -54,6 +54,9 @@ jobs:
     needs: build
     steps:
     
+      - name: Checkout repository
+        uses: actions:checkout@v3
+    
       - name: Download Log File
         uses: actions/download-artifact@v3
         with:
@@ -80,9 +83,7 @@ jobs:
           else
             echo "Container failed to run" >> log.txt
           fi
-        
-      - name: Checkout
-        uses: actions/checkout@v3
+      
         
       - name: Set up Python
         uses: actions/setup-python@v4
