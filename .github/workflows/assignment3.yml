@@ -27,7 +27,7 @@ jobs:
           tags: cloud-computing-homework-3
       
       - name: If Build Failed
-        if: faliure()
+        if: failure()
         run: echo "image not able to be built" >> log.txt
         
       - name: Check If Image Was Successfully bulid
