@@ -64,9 +64,6 @@ jobs:
         with:
           name: cloud-computing-homework-3
         
-      - name: Check download
-        run: ls -R
-      
       - name: Load Docker Image From Previous Job
         run: docker load --input ./image.tar
         
@@ -75,7 +72,7 @@ jobs:
           
       - name: Check Docker Container Status
         run: |
-          image_name="cloud-computinfg-homework-3"  # Replace with your container name
+          image_name="cloud-computing-homework-3"  # Replace with your container name
 
           # Check if the container is running
           if docker ps --format '{{.Image}}' | grep -q "$image_name"; then
