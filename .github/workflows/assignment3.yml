@@ -93,6 +93,7 @@ jobs:
           pip install pytest
           pip install requests
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+          
       - name: Run tests with pytest
         run: |
           cd tests
@@ -103,15 +104,18 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: GH-test-results
-          path: assn3_test_results.txt
+          path: ./tests/assn3_test_results.txt
+          
+      - name: check log
+        run: cat log.txt
       
       - name: Tests failed
         if: failure()
-        run: echo "tests failed" >> ./log.txt
+        run: echo "tests failed" >> log.txt
       
       - name: Tests succeeded
         if: success()
-        run: echo "tests succeeded" >> ./log.txt
+        run: echo "tests succeeded" >> log.txt
       
       - name: Upload Log File
         if: always()
