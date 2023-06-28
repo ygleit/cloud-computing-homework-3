@@ -2,8 +2,9 @@ name: assignment3
 
 on: push
 jobs:
-  start-time:
+  build:
     runs-on: ubuntu-latest
+    continue-on-error: false
     steps:
       - name: Checkout workflow
         uses: actions/checkout@v3
@@ -26,7 +27,7 @@ jobs:
           tags: cloud-computing-homework-3
           
       - name: Check If Image Was Successfully bulid
-        id: image-check
+        if: always()
         run: |
           if [[ success() ]]; then 
             echo "image successfully built" >> log.txt
@@ -35,6 +36,21 @@ jobs:
             exit 1
           fi
           
+      - name: Upload Log File
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: log
+          path: log.txt
+
+  test:
+    runs-on: ubuntu-latest
+    steps: 
+      - name: Download Log File
+        uses: actions/download-artifact@v2
+        with:
+          name: log
+      
       - name: Run Docker Image
         if: steps.image-check.outputs.success == 'true'
         uses: docker/cli@v2
