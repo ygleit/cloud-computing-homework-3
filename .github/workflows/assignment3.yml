@@ -25,16 +25,14 @@ jobs:
           dockerfile: Dockerfile
           push: false
           tags: cloud-computing-homework-3
-          
+      
+      - name: If Build Failed
+        if: faliure()
+        run: echo "image not able to be built" >> log.txt
+        
       - name: Check If Image Was Successfully bulid
-        if: always()
-        run: |
-          if $[[ success() ]]; then 
-            echo "image successfully built" >> log.txt
-          else
-            echo "image not able to be built" >> log.txt
-            exit 1
-          fi
+        if: success()
+        run: echo "image successfully built" >> log.txt
           
       - name: Upload Log File
         if: always()
