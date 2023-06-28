@@ -106,6 +106,10 @@ jobs:
           name: GH-test-results
           path: ./tests/assn3_test_results.txt
           
+      - name: check dir
+        if: always()
+        run: ls -R
+          
       - name: check log
         if: always()
         run: cat log.txt
