@@ -31,7 +31,7 @@ jobs:
         if: success()
         uses: actions/upload-artifact@v3
         with:
-          name: image
+          name: cloud-computing-homework-3
           path: /tmp/image.tar
       
       - name: If Build Failed
@@ -63,7 +63,7 @@ jobs:
       - name: Download Docker Image
         uses: actions/download-artifact@v3
         with:
-          name: image
+          name: cloud-computing-homework-3
       
       - name: Load Docker Image From Previous Job
         run: docker load --input cloud-computing-homework-3/image.tar
