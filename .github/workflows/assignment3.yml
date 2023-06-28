@@ -6,7 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Set start date 
-        run: echo "DATE=$date –Iminutes" >> $GITHUB_WORKFLOW_START_DATE
+        run: echo "DATE=$date –Iminutes" >> $GITHUB_ENV
 
 #      - name: Build Docker image
 #        run: docker build -t yglrit/cloud-computing-homework:latest .
