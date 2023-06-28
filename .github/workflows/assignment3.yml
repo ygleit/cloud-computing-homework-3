@@ -58,11 +58,13 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: log
+          path: log.txt
       
       - name: Download Docker Image
         uses: actions/download-artifact@v3
         with:
           name: image
+          path: cloud-computing-homework-3/image.tar
       
       - name: Load Docker Image From Previous Job
         run: docker load --input cloud-computing-homework-3/image.tar
