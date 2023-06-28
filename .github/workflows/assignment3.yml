@@ -83,7 +83,6 @@ jobs:
           else
             echo "Container failed to run" >> log.txt
           fi
-      
         
       - name: Set up Python
         uses: actions/setup-python@v4
@@ -106,14 +105,6 @@ jobs:
         with:
           name: GH-test-results
           path: ./tests/assn3_test_results.txt
-          
-      - name: check dir
-        if: always()
-        run: ls -R
-          
-      - name: check log
-        if: always()
-        run: cat log.txt
       
       - name: Tests failed
         if: failure()
@@ -130,5 +121,3 @@ jobs:
           name: log
           path: log.txt
           
-          
-
