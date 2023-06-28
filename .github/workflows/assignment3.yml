@@ -71,7 +71,7 @@ jobs:
         run: docker load --input ./image.tar
         
       - name: Run Docker Image
-        run: docker run -p 8000:8000 cloud-computing-homework-3 -d
+        run: docker run -p 8000:8000 -d cloud-computing-homework-3
           
       - name: Check Docker Container Status
         run: |
