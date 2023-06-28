@@ -5,8 +5,20 @@ jobs:
   start-time:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout workflow
+        uses: actions/checkout@v3
+        
       - name: Set start date 
-        run: echo "DATE=$date –Iminutes" >> $GITHUB_ENV
+        run: echo "DATE=$date –Iminutes" >> log.txt
+        
+      - name: Add submitters names
+        run: echo "Yonathan Gleit, Nir Sharon" >> log.txt
+        
+      - name: Retrieve Log File
+        uses: actions/upload-artifact@v3
+        with:
+          name: log.txt
+          path: log.txt
 
 #      - name: Build Docker image
 #        run: docker build -t yglrit/cloud-computing-homework:latest .
