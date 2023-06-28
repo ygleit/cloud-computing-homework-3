@@ -107,6 +107,7 @@ jobs:
           path: ./tests/assn3_test_results.txt
           
       - name: check log
+        if: always()
         run: cat log.txt
       
       - name: Tests failed
