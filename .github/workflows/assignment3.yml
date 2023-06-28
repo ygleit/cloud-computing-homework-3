@@ -29,7 +29,7 @@ jobs:
       - name: Check If Image Was Successfully bulid
         if: always()
         run: |
-          if [[ success() ]]; then 
+          if ${{ success() }}; then 
             echo "image successfully built" >> log.txt
           else
             echo "image not able to be built" >> log.txt
