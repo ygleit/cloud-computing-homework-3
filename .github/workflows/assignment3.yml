@@ -64,6 +64,9 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: cloud-computing-homework-3
+        
+      - name: Check download
+        run: ls -R
       
       - name: Load Docker Image From Previous Job
         run: docker load --input cloud-computing-homework-3/image.tar
