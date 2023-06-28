@@ -25,6 +25,14 @@ jobs:
           dockerfile: Dockerfile
           push: false
           tags: cloud-computing-homework-3
+          outputs: type=docker, dest=/tmp/image.tar
+      
+      - name: Upload Image
+        if: success()
+        uses: actions/upload-artifact@v3
+        with:
+          name: image
+          path: /tmp/image.tar
       
       - name: If Build Failed
         if: failure()
@@ -43,6 +51,7 @@ jobs:
 
   test:
     runs-on: ubuntu-latest
+    needs: build
     steps: 
       - name: Download Log File
         uses: actions/download-artifact@v2
