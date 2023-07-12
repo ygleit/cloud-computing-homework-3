@@ -160,7 +160,7 @@ jobs:
         path: response.txt
     
     - name: Delete the docker image artifact
-      uses: actions/delete-artifact@v2
+      uses: geekyeggo/delete-artifact@v2
       with:
         name: cloud-computing-homework-3
         
