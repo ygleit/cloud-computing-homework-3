@@ -134,7 +134,7 @@ jobs:
     
     services:
       dishes-and-meals:
-        image: ${{ secrets.DOCKER_USERNAME}}/cloud-computing-homework-3:latest
+        image: ${{secrets.DOCKER_USERNAME}}/cloud-computing-homework-3:latest
     
     steps:
     - name: Checkout workflow
