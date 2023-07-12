@@ -33,7 +33,6 @@ jobs:
           tags: ${{secrets.DOCKER_USERNAME}}/cloud-computing-homework-3:latest
           outputs: type=docker, dest=/tmp/image.tar
           
-      - name: Upload To Dockerhub
       
       - name: Upload Image
         if: success()
