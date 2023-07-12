@@ -135,6 +135,8 @@ jobs:
     services:
       dishes-and-meals:
         image: ${{secrets.DOCKER_USERNAME}}/cloud-computing-homework-3:latest
+        ports:
+         - 8000:8000
     
     steps:
     - name: Checkout workflow
