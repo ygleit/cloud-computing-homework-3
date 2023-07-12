@@ -144,8 +144,8 @@ jobs:
     - name: Query service
       run: |
         cat query.txt | while read -r dish_name; do
-          id=$(curl -s -X POST -H "Content-Type: application/json" -d "{\"name\": \"$dish_name\"}" http://localhost:8000/dishes)
-          dish=$(curl -s http://localhost:8000/dishes/$id)
+          id=$(curl -s -X POST -H "Content-Type: application/json" -d "{\"name\": \"$dish_name\"}" http://127.0.0.1:8000/dishes)
+          dish=$(curl -s http://127.0.0.1:8000/dishes/$id)
           cal=$(echo "$dish" | jq -r ".cal")
           sodium=$(echo "$dish" | jq -r ".sodium")
           sugar=$(echo "$dish" | jq -r ".sugar")
