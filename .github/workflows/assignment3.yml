@@ -141,6 +141,9 @@ jobs:
     - name: Run Docker Image
       run: docker run -p 8000:8000 -d cloud-computing-homework-3
       
+    - name: check if app is running
+      run: docker ps
+      
     - name: Query service
       if: success()
       run: |
