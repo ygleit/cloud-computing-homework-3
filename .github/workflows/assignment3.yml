@@ -17,20 +17,14 @@ jobs:
       
       - name: Setup Docker
         uses: docker/setup-buildx-action@v2
-        
-      - name: Login To Dockerhub
-        uses: docker/login-action@v2
-        with:
-          username: ${{secrets.DOCKER_COURSE_USERNAME}}
-          password: ${{secrets.DOCKER_COURSE_PASSWORD}}
       
       - name: Build Docker image
         uses: docker/build-push-action@v4
         with:
           context: .
           dockerfile: Dockerfile
-          push: true
-          tags: ${{secrets.DOCKER_USERNAME}}/cloud-computing-homework-3:latest
+          push: false
+          tags: cloud-computing-homework-3
           outputs: type=docker, dest=/tmp/image.tar
           
       
@@ -131,15 +125,21 @@ jobs:
   query:
     runs-on: ubuntu-latest
     needs: test
-    services:
-      dishes-and-meals:
-        image: yonathangleitidc/cloud-computing-homework-3:latest
-        ports:
-         - 8000:8000
     
     steps:
     - name: Checkout workflow
       uses: actions/checkout@v3
+      
+    - name: Download Docker Image
+      uses: actions/download-artifact@v3
+      with:
+        name: cloud-computing-homework-3
+        
+    - name: Load Docker Image From Previous Job
+      run: docker load --input ./image.tar
+        
+    - name: Run Docker Image
+      run: docker run -p 8000:8000 -d cloud-computing-homework-3
       
     - name: Query service 
       run: |
