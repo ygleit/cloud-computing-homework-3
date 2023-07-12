@@ -131,14 +131,9 @@ jobs:
   query:
     runs-on: ubuntu-latest
     needs: test
-    
-    env:
-      DOCKER_IMAGE: ${{ secrets.DOCKER_USERNAME }}/cloud-computing-homework-3:latest
-    
     services:
-    
       dishes-and-meals:
-        image: ${{ env.DOCKER_IMAGE }}
+        image: yonathangleitidc/cloud-computing-homework-3:latest
         ports:
          - 8000:8000
     
