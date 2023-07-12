@@ -141,6 +141,30 @@ jobs:
     - name: Run Docker Image
       run: docker run -p 8000:8000 -d cloud-computing-homework-3
       
+    - name: Query service
+      run: |
+        cat query.txt | while read -r dish_name; do
+          id=$(curl -s -X POST -H "Content-Type: application/json" -d "{\"name\": \"$dish_name\"}" http://localhost:8000/dishes)
+          dish=$(curl -s http://localhost:8000/dishes/$id)
+          cal=$(echo "$dish" | jq -r ".cal")
+          sodium=$(echo "$dish" | jq -r ".sodium")
+          sugar=$(echo "$dish" | jq -r ".sugar")
+          echo "$dish_name contains $cal calories, $sodium mgs of sodium, and $sugar grams of sugar" >> response.txt
+        done
+      
+    - name: Upload Response File
+      if: always()
+      uses: actions/upload-artifact@v3
+      with:
+        name: response
+        path: response.txt
+    
+    - name: Delete the docker image artifact
+      uses: actions/delete-artifact@v2
+      with:
+        name: cloud-computing-homework-3
+        
+      
     
       
           
