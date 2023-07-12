@@ -141,8 +141,7 @@ jobs:
     - name: Run Docker Image
       run: docker run -p 8000:8000 -d cloud-computing-homework-3
       
-    - name: Query service
-      needs: Run Docker Image 
+    - name: Query service 
       run: |
         cat query.txt | while read -r dish_name; do
           id=$(curl -s -X POST -H "Content-Type: application/json" -d "{\"name\": \"$dish_name\"}" http://127.0.0.1:8000/dishes)
@@ -160,10 +159,6 @@ jobs:
         name: response
         path: response.txt
     
-    - name: Delete the docker image artifact
-      uses: geekyeggo/delete-artifact@v2
-      with:
-        name: cloud-computing-homework-3
         
       
     
