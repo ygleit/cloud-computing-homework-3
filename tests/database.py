@@ -101,3 +101,11 @@ BRIOCHE = {
     "sodium": 369,
     "sugar": 7
 }
+ORANGE = {
+        
+        "cal": 50.4,
+        "name": "orange",
+        "size": 100.0,
+        "sodium": 1,
+        "sugar": 8.4
+}

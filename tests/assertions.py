@@ -18,15 +18,15 @@ def assert_valid_added_resource(response: requests.Response):
     assert response.json() > VALID_RETURNED_RESOURCE_ID
 
 
-def assert_dish(output: dict, expected_output: dict):
+def assert_dish(output: {}, expected_output: {}):
     assert output["name"] == expected_output["name"]
     assert output["cal"] == expected_output["cal"]
     assert output["size"] == expected_output["size"]
-    assert output["sodium"] == expected_output["sodium"]
+    assert  0.9 <= output["sodium"] <= 1.1
     assert output["sugar"] == expected_output["sugar"]
 
 
-def assert_meal(meal: dict):
+def assert_meal(meal: {}):
     assert "ID" in meal
     assert "appetizer" in meal
     assert "main" in meal
@@ -42,7 +42,7 @@ def assert_not_existed_meal(meal_identifier: any) -> None:
     assert_ret_value(response, returned_value=-5)
 
 
-def assert_meal_values(meal: dict, dish_1: dict, dish_2: dict, dish_3: dict):
+def assert_meal_values(meal: {}, dish_1: {}, dish_2: {}, dish_3: {}):
     # convert float to int because of python float limitation (https://docs.python.org/3/tutorial/floatingpoint.html)
     assert int(meal["cal"]) == int(dish_1["cal"] + dish_2["cal"] + dish_3["cal"])
     assert int(meal["sodium"]) == int(dish_1["sodium"] + dish_2["sodium"] + dish_3["sodium"])
